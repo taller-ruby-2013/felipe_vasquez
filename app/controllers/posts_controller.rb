@@ -15,11 +15,13 @@ class PostsController < ApplicationController
 	end
 	def show
 		@post = Post.find(params[:id])
+		@comentarios = @post.comments.page(params[:page]).per(5)
+	end
+	
+	def index
+		@posts = Post.all.page(params[:page]).per(5)
 	end
 
-	def index
-		@posts = Post.all
-	end
 
 	def edit
 		@post = Post.find(params[:id])
